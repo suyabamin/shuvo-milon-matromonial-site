@@ -54,7 +54,7 @@ Firebase Console-এ:
 - [ ] Google Cloud API key restricted to HTTP referrers (`localhost:3000/*`, production domain) and only the APIs needed (Firestore, Auth)
 - [ ] Firebase Budget Alert set at 50%, 90%, and 100% of monthly budget (T8.4)
 - [ ] Cloudinary account created; `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` and `CLOUDINARY_API_SECRET` filled in `.env.local`
-- [ ] Java 21 installed (`java -version`) — required to run Firebase Emulator for rule tests (T8.2)
+- [x] Java 21 installed (`java -version`) — required to run Firebase Emulator for rule tests (T8.2)
 - [ ] Responsive check at 360px, 768px, and 1440px in a real browser (T8.1)
 - [ ] Lighthouse audit run on production build — target score 80+ (T8.3)
 - [ ] Firebase Blaze (pay-as-you-go) plan enabled — required only for Cloud Functions deploy
