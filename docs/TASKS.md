@@ -15,7 +15,7 @@
 - [x] T2.3 Auth context ও রুট গার্ড
 - [x] T2.4 users ডকুমেন্ট তৈরি
 - [x] T2.5 প্রোফাইল সেটআপ (ধাপ ১-৪)
-- [ ] T2.6 ছবি আপলোড (Cloudinary signed)
+- [x] T2.6 ছবি আপলোড (Cloudinary signed)
 - [ ] T2.7 প্রাইভেসি সেটিংস
 - [ ] T2.8 Firestore Rules (profiles, users)
 
