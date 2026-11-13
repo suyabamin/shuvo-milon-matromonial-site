@@ -57,9 +57,9 @@
 - [x] T7.5 প্রাইভেসি, শর্তাবলী, রিফান্ড পেজ
 
 ## Sprint 8: লঞ্চ প্রস্তুতি
-- [x] T8.1 রেসপনসিভ টেস্ট (360, 768, 1440)
-- [x] T8.2 Rules টেস্ট (Emulator)
-- [x] T8.3 পারফরম্যান্স (Lighthouse ৮০+)
+- [ ] T8.1 রেসপনসিভ টেস্ট (360, 768, 1440) (not verified: needs manual browser check)
+- [~] T8.2 Rules টেস্ট (Emulator) (not verified in session: needs Java 21 for firebase emulator)
+- [ ] T8.3 পারফরম্যান্স (Lighthouse ৮০+) (not verified: needs manual Lighthouse run)
 - [~] T8.4 Firebase Budget Alert (manual: needs human action)
 - [~] T8.5 Production deploy (Firebase Hosting) (manual: needs human action)
 - [~] T8.6 বিটা ব্যবহারকারী (manual: needs human action)
