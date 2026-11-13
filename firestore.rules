@@ -16,9 +16,13 @@ service cloud.firestore {
     }
 
     function isMatchedWith(targetUid) {
+      // Only an ACTIVE match grants contact access.
+      // Match ID is stored in both orientations: uid1_uid2 or uid2_uid1.
       return isAuthenticated() && (
-        exists(/databases/$(database)/documents/matches/$(request.auth.uid + '_' + targetUid)) ||
-        exists(/databases/$(database)/documents/matches/$(targetUid + '_' + request.auth.uid))
+        (exists(/databases/$(database)/documents/matches/$(request.auth.uid + '_' + targetUid)) &&
+         get(/databases/$(database)/documents/matches/$(request.auth.uid + '_' + targetUid)).data.status == 'active') ||
+        (exists(/databases/$(database)/documents/matches/$(targetUid + '_' + request.auth.uid)) &&
+         get(/databases/$(database)/documents/matches/$(targetUid + '_' + request.auth.uid)).data.status == 'active')
       );
     }
 
@@ -29,9 +33,12 @@ service cloud.firestore {
       allow create: if isAuthenticated() && isOwner(uid)
                     && request.resource.data.role == "user"
                     && request.resource.data.isBlocked == false;
+      // Owner can update own safe fields (not role, not isBlocked)
       allow update: if isOwner(uid)
                     && request.resource.data.role == resource.data.role
-                    && request.resource.data.isBlocked == resource.data.isBlocked;
+                    && request.resource.data.isBlocked == resource.data.isBlocked
+                    // Admin can update isBlocked and role (via Cloud Function custom claims)
+                    || isAdmin();
       allow delete: if false;
     }
 
@@ -39,12 +46,22 @@ service cloud.firestore {
     match /profiles/{uid} {
       // Anyone can read published profiles that are not hidden
       allow read: if resource.data.status == "published" || isOwner(uid) || isAdmin();
-      allow create, update: if isOwner(uid);
+      // Owner can create/update their own profile; admin can update (for verification)
+      allow create: if isOwner(uid);
+      // Owner can update non-admin fields; admin can update verified flag and status
+      allow update: if isOwner(uid) && !isChangingAdminFields()
+                    || isAdmin();
       allow delete: if isOwner(uid) || isAdmin();
+
+      // Helper: prevent owners from promoting their own profile or setting verified
+      function isChangingAdminFields() {
+        return request.resource.data.diff(resource.data).affectedKeys()
+                 .hasAny(['verified', 'reportCount']);
+      }
 
       // Sensitive contact information subcollection (guardian phone, candidate phone, address)
       match /private/contact {
-        // Allowed for owner, verified admin, or mutually matched user
+        // Allowed for owner, verified admin, or ACTIVE mutually matched user
         allow read: if isOwner(uid) || isAdmin() || isMatchedWith(uid);
         allow write: if isOwner(uid);
       }

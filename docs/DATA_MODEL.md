@@ -193,7 +193,9 @@ interface MatchDocument {
   id: string;
   users: [string, string]; // [uid1, uid2]
   interestId: string;
+  status: 'active' | 'dissolved'; // active = match is live; dissolved = one party withdrew
   createdAt: FirebaseFirestore.Timestamp;
+  dissolvedAt?: FirebaseFirestore.Timestamp; // set when status changes to 'dissolved'
 }
 ```
 
