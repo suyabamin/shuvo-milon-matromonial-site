@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Hind_Siliguri, Noto_Sans_Bengali, Poppins } from "next/font/google";
 import { Header } from "@/components/Header";
 import { BottomNav } from "@/components/BottomNav";
@@ -47,7 +48,9 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
-          <BottomNav />
+          <Suspense fallback={null}>
+            <BottomNav />
+          </Suspense>
         </AuthProvider>
       </body>
     </html>
