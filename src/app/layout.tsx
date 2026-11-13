@@ -3,6 +3,7 @@ import { Hind_Siliguri, Noto_Sans_Bengali, Poppins } from "next/font/google";
 import { Header } from "@/components/Header";
 import { BottomNav } from "@/components/BottomNav";
 import { Footer } from "@/components/Footer";
+import { AuthProvider } from "@/features/auth/AuthContext";
 import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({
@@ -42,10 +43,12 @@ export default function RootLayout({
       className={`${hindSiliguri.variable} ${notoSansBengali.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-body bg-surface text-text">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <BottomNav />
+        <AuthProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <BottomNav />
+        </AuthProvider>
       </body>
     </html>
   );
