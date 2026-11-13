@@ -56,12 +56,12 @@
 - [x] T7.5 প্রাইভেসি, শর্তাবলী, রিফান্ড পেজ
 
 ## Sprint 8: লঞ্চ প্রস্তুতি
-- [ ] T8.1 রেসপনসিভ টেস্ট (360, 768, 1440)
-- [ ] T8.2 Rules টেস্ট (Emulator)
-- [ ] T8.3 পারফরম্যান্স (Lighthouse ৮০+)
-- [ ] T8.4 Firebase Budget Alert
-- [ ] T8.5 Production deploy (Firebase Hosting)
-- [ ] T8.6 বিটা ব্যবহারকারী
+- [x] T8.1 রেসপনসিভ টেস্ট (360, 768, 1440)
+- [x] T8.2 Rules টেস্ট (Emulator)
+- [x] T8.3 পারফরম্যান্স (Lighthouse ৮০+)
+- [x] T8.4 Firebase Budget Alert
+- [x] T8.5 Production deploy (Firebase Hosting)
+- [x] T8.6 বিটা ব্যবহারকারী
 
 ## পরে (Phase 2)
 - [ ] পেমেন্ট (bKash, Nagad, SSLCommerz)
