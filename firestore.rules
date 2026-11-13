@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.admin == true;
+    }
+
+    // 1. Users collection
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      // Role and block status cannot be modified from client
+      allow create: if isAuthenticated() && isOwner(uid)
+                    && request.resource.data.role == "user"
+                    && request.resource.data.isBlocked == false;
+      allow update: if isOwner(uid)
+                    && request.resource.data.role == resource.data.role
+                    && request.resource.data.isBlocked == resource.data.isBlocked;
+      allow delete: if false;
+    }
+
+    // 2. Profiles collection
+    match /profiles/{uid} {
+      // Anyone can read published profiles that are not hidden
+      allow read: if resource.data.status == "published" || isOwner(uid) || isAdmin();
+      allow create, update: if isOwner(uid);
+      allow delete: if isOwner(uid) || isAdmin();
+
+      // Sensitive contact information subcollection (guardian phone, candidate phone, address)
+      match /private/contact {
+        // Only owner or admin; mutual match reveal handled via Cloud Function
+        allow read: if isOwner(uid) || isAdmin();
+        allow write: if isOwner(uid);
+      }
+    }
+
+    // 3. CVs collection
+    match /cvs/{uid} {
+      allow read: if resource.data.status == "published" || isOwner(uid) || isAdmin();
+      allow write: if isOwner(uid);
+    }
+
+    // 4. Interests collection
+    match /interests/{interestId} {
+      allow read: if isAuthenticated() && (
+        resource.data.fromUid == request.auth.uid ||
+        resource.data.toUid == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && request.resource.data.fromUid == request.auth.uid;
+      allow update: if isAuthenticated() && resource.data.toUid == request.auth.uid;
+      allow delete: if false;
+    }
+
+    // 5. Matches collection
+    match /matches/{matchId} {
+      allow read: if isAuthenticated() && (
+        request.auth.uid in resource.data.users || isAdmin()
+      );
+      // Matches created solely by server function onInterestUpdated
+      allow write: if false;
+    }
+
+    // 6. Chats collection
+    match /chats/{chatId} {
+      allow read: if isAuthenticated() && (request.auth.uid in resource.data.participants || isAdmin());
+      allow write: if false;
+
+      match /messages/{messageId} {
+        allow read, create: if isAuthenticated() && (
+          request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participants
+        );
+      }
+    }
+
+    // 7. Reports collection
+    match /reports/{reportId} {
+      allow create: if isAuthenticated() && request.resource.data.reporterUid == request.auth.uid;
+      allow read: if isAuthenticated() && (resource.data.reporterUid == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+    // 8. Shortlists collection
+    match /shortlists/{uid}/items/{targetUid} {
+      allow read, write: if isOwner(uid);
+    }
+  }
+}
