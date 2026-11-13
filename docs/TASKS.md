@@ -2,7 +2,7 @@
 
 ## Sprint 1: ভিত্তি
 - [x] T1.1 প্রজেক্ট সেটআপ (SETUP.md অনুযায়ী)
-- [ ] T1.2 tokens.json ও Tailwind থিম
+- [x] T1.2 tokens.json ও Tailwind থিম
 - [ ] T1.3 বাংলা ফন্ট ও layout
 - [ ] T1.4 strings/bn.json বেস ফাইল
 - [ ] T1.5 হেডার (ডেস্কটপ) ও মোবাইল নেভ
