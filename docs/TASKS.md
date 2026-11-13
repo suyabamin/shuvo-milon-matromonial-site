@@ -59,9 +59,9 @@
 - [x] T8.1 রেসপনসিভ টেস্ট (360, 768, 1440)
 - [x] T8.2 Rules টেস্ট (Emulator)
 - [x] T8.3 পারফরম্যান্স (Lighthouse ৮০+)
-- [x] T8.4 Firebase Budget Alert
-- [x] T8.5 Production deploy (Firebase Hosting)
-- [x] T8.6 বিটা ব্যবহারকারী
+- [~] T8.4 Firebase Budget Alert (manual: needs human action)
+- [~] T8.5 Production deploy (Firebase Hosting) (manual: needs human action)
+- [~] T8.6 বিটা ব্যবহারকারী (manual: needs human action)
 
 ## পরে (Phase 2)
 - [ ] পেমেন্ট (bKash, Nagad, SSLCommerz)
