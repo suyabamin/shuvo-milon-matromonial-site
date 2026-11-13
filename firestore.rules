@@ -15,6 +15,13 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.token.admin == true;
     }
 
+    function isMatchedWith(targetUid) {
+      return isAuthenticated() && (
+        exists(/databases/$(database)/documents/matches/$(request.auth.uid + '_' + targetUid)) ||
+        exists(/databases/$(database)/documents/matches/$(targetUid + '_' + request.auth.uid))
+      );
+    }
+
     // 1. Users collection
     match /users/{uid} {
       allow read: if isOwner(uid) || isAdmin();
@@ -37,8 +44,8 @@ service cloud.firestore {
 
       // Sensitive contact information subcollection (guardian phone, candidate phone, address)
       match /private/contact {
-        // Only owner or admin; mutual match reveal handled via Cloud Function
-        allow read: if isOwner(uid) || isAdmin();
+        // Allowed for owner, verified admin, or mutually matched user
+        allow read: if isOwner(uid) || isAdmin() || isMatchedWith(uid);
         allow write: if isOwner(uid);
       }
     }
