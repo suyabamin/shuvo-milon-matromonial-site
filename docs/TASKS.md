@@ -16,8 +16,8 @@
 - [x] T2.4 users ডকুমেন্ট তৈরি
 - [x] T2.5 প্রোফাইল সেটআপ (ধাপ ১-৪)
 - [x] T2.6 ছবি আপলোড (Cloudinary signed)
-- [ ] T2.7 প্রাইভেসি সেটিংস
-- [ ] T2.8 Firestore Rules (profiles, users)
+- [x] T2.7 প্রাইভেসি সেটিংস
+- [x] T2.8 Firestore Rules (profiles, users)
 
 ## Sprint 3: খোঁজা
 - [ ] T3.1 হোমপেজ হিরো ও সার্চ কার্ড
