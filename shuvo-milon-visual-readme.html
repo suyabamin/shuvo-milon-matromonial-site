@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Professional project documentation and visual README preview for Shuvo Milon, an Islamic matrimonial platform.">
+<title>Shuvo Milon — Project Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#172b2a;--muted:#617472;--brand:#0f766e;--brand2:#14b8a6;--pale:#e9f7f4;--line:#dce8e5;--paper:#fff;--bg:#f3f7f6;--gold:#d5a34b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Hind Siliguri",sans-serif;line-height:1.65}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.hero{background:linear-gradient(125deg,#083f3c,#0f766e 60%,#19a89a);color:#fff;padding:64px 24px 54px}
+.hero-inner{max-width:1160px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:#b9eee5}
+h1{font-size:clamp(36px,6vw,62px);line-height:1.08;margin:14px 0 12px;letter-spacing:-.04em}
+.hero p{font-family:"Hind Siliguri",sans-serif;font-size:21px;max-width:760px;color:#e1f7f2;margin:0}
+.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}.pill{border:1px solid #ffffff55;background:#ffffff15;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600}
+.layout{max-width:1240px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px}
+nav{position:sticky;top:20px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;max-height:calc(100vh - 40px);overflow:auto}
+nav strong{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:2px 8px 10px}
+nav a{display:block;padding:7px 9px;border-radius:8px;font-size:13px;color:#38504d}nav a:hover{background:var(--pale);text-decoration:none}
+main{min-width:0}.section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px;margin-bottom:22px;box-shadow:0 8px 24px #183b3510}
+h2{font-size:25px;letter-spacing:-.025em;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h3{font-size:17px;margin:24px 0 10px;color:#155e58}p{margin:10px 0;color:#3c514e}
+.lead{font-size:17px;color:#3b5551}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.feature{border:1px solid var(--line);border-radius:13px;padding:16px;background:linear-gradient(180deg,#fff,#fbfefd)}
+.feature b{display:block;color:#155e58;margin-bottom:4px}.feature span{font-size:13px;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eff8f6;color:#155e58;font-weight:700}
+.diagram{margin:16px 0 22px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fcfefd}
+.diagram-head{padding:10px 14px;background:#f0f8f6;border-bottom:1px solid var(--line);font-size:13px;font-weight:700;color:#25635d}
+.mermaid{padding:22px 12px;overflow:auto;text-align:center;min-height:100px}
+.mermaid svg{max-width:100%;height:auto}
+code{background:#edf5f3;border-radius:5px;padding:2px 5px;color:#155e58;font-size:.9em}
+pre{white-space:pre-wrap;background:#102d2b;color:#d7f3ed;border-radius:12px;padding:16px;overflow:auto;font-size:13px}
+.callout{border-left:4px solid var(--gold);background:#fff9ed;padding:14px 16px;border-radius:0 10px 10px 0;color:#66502a;margin:14px 0}
+.status{display:inline-block;border-radius:999px;background:#fff3d9;color:#805b16;padding:3px 9px;font-size:11px;font-weight:700}
+ul,ol{padding-left:23px;color:#3c514e}li{margin:5px 0}
+footer{text-align:center;color:#6b807c;padding:24px;font-size:13px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}nav{position:relative;top:auto;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}nav strong{grid-column:1/-1}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.hero{padding:44px 20px}.layout{padding:0 12px;margin:18px auto}.section{padding:20px 16px}.grid{grid-template-columns:1fr}nav{grid-template-columns:1fr 1fr}h2{font-size:22px}}
+@media print{body{background:#fff}.layout{display:block;max-width:none}nav{display:none}.section{break-inside:avoid;box-shadow:none}.hero{print-color-adjust:exact}}
+</style>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+mermaid.initialize({startOnLoad:true,theme:'base',securityLevel:'strict',themeVariables:{primaryColor:'#e7f6f2',primaryTextColor:'#173b37',primaryBorderColor:'#0f766e',lineColor:'#538b83',secondaryColor:'#fff5df',tertiaryColor:'#f4f8f7',fontFamily:'Inter, Hind Siliguri, sans-serif'}});
+</script>
+</head>
+<body>
+<header class="hero"><div class="hero-inner">
+<div class="eyebrow">Project documentation · Software requirements · System design</div>
+<h1>শুভ মিলন <span style="font-weight:400">/ Shuvo Milon</span></h1>
+<p>বিশ্বাস, মূল্যবোধ ও সামঞ্জস্যের ভিত্তিতে জীবনসঙ্গী খুঁজুন।</p>
+<div class="pills"><span class="pill">Next.js 16</span><span class="pill">TypeScript</span><span class="pill">Firebase</span><span class="pill">Cloud Firestore</span><span class="pill">Cloudinary</span><span class="pill">Bengali-first</span></div>
+</div></header>
+<div class="layout">
+<nav aria-label="Table of contents"><strong>On this page</strong>
+<a href="#overview">01 · Overview</a><a href="#vision">02 · Vision</a><a href="#features">03 · Features</a><a href="#srs">04 · SRS</a><a href="#architecture">05 · Architecture</a><a href="#diagrams">06 · Diagrams</a><a href="#stack">07 · Technology</a><a href="#database">08 · Database</a><a href="#security">09 · Security</a><a href="#roles">10 · Roles</a><a href="#setup">11 · Setup</a><a href="#environment">12 · Environment</a><a href="#structure">13 · Structure</a><a href="#testing">14 · Testing</a><a href="#roadmap">15 · Roadmap</a><a href="#deployment">16 · Deployment</a><a href="#contribution">17 · Contribution</a><a href="#license">18 · License</a>
+</nav>
+<main>
+<section class="section" id="overview"><h2>01. Project Overview</h2>
+<p class="lead"><b>Shuvo Milon</b> is a Bangladeshi Islamic matrimonial and biodata-based matchmaking web application. It helps individuals and families discover compatible life partners through structured profiles, consent-based matching, and privacy-conscious communication.</p>
+<div class="grid">
+<div class="feature"><b>Trust & verification</b><span>Profile review and responsible moderation.</span></div>
+<div class="feature"><b>Privacy by design</b><span>Private contact information protected from public reads.</span></div>
+<div class="feature"><b>Mutual consent</b><span>Interest and match workflows before contact access.</span></div>
+<div class="feature"><b>Bengali-first UX</b><span>Accessible, responsive interface for Bangladesh.</span></div>
+<div class="feature"><b>Matrimonial CV</b><span>Structured biodata preview and PDF generation.</span></div>
+<div class="feature"><b>Secure messaging</b><span>Authorized conversations, reporting and blocking.</span></div>
+</div>
+<table><tr><th>Attribute</th><th>Description</th></tr><tr><td>Repository</td><td><code>shuvo-milon-matromonial-site</code></td></tr><tr><td>Project type</td><td>Islamic matrimonial web application</td></tr><tr><td>Target market</td><td>Bangladesh</td></tr><tr><td>Primary language</td><td>Bengali</td></tr><tr><td>Framework</td><td>Next.js 16 App Router</td></tr><tr><td>Language</td><td>TypeScript (strict)</td></tr><tr><td>Database</td><td>Cloud Firestore</td></tr><tr><td>Authentication</td><td>Firebase Phone Authentication</td></tr><tr><td>Media</td><td>Cloudinary signed uploads</td></tr></table>
+</section>
+<section class="section" id="vision"><h2>02. Project Vision</h2><p>Build a reliable digital matrimonial ecosystem where people can discover compatible life partners without compromising personal privacy, dignity, or family values.</p>
+<ol><li><b>Trust:</b> Verified profiles and responsible moderation.</li><li><b>Privacy:</b> Personal contact information protected by default.</li><li><b>Consent:</b> Private access depends on the approved mutual-consent policy.</li><li><b>Compatibility:</b> Structured biodata and filters support discovery.</li><li><b>Accessibility:</b> Bengali-first, responsive experience.</li><li><b>Security:</b> Strong authentication, authorization and data handling.</li></ol></section>
+<section class="section" id="features"><h2>03. Key Features</h2>
+<h3>Authentication and accounts</h3><p>Phone-number registration, Firebase OTP verification, session handling and protected routes.</p>
+<h3>Matrimonial biodata</h3><p>Personal, educational, professional, family, religious, lifestyle and marriage-preference information, with profile photographs and privacy settings.</p>
+<h3>Profile discovery</h3><p>Browse profiles, structured search filters, detailed biodata, pagination and shortlists.</p>
+<h3>Interest and matchmaking</h3><p>Send interest, review incoming requests, accept or reject, create matches after required mutual acceptance, and reveal contact details only under authorization policy.</p>
+<h3>Private communication</h3><p>Conversation list, real-time messaging, access control, reporting and blocking.</p>
+<h3>Matrimonial CV</h3><p>Multi-step CV forms, autosave, preview, templates and Bengali PDF output.</p>
+<h3>Administration and information</h3><p>Admin roles, profile verification, report moderation, About, FAQ, Guide, Contact, Privacy, Terms and Refund pages.</p></section>
+<section class="section" id="srs"><h2>04. Software Requirements Specification (SRS)</h2>
+<h3>4.1 Purpose and scope</h3><p>This SRS defines functional, non-functional, technical and security requirements for Shuvo Milon. It is intended for developers, architects, designers, QA engineers and project administrators.</p>
+<h3>4.2 User classes</h3><table><tr><th>Class</th><th>Description</th></tr><tr><td>Guest</td><td>Views public information and can begin registration.</td></tr><tr><td>Registered user</td><td>Manages biodata, searches and expresses interest.</td></tr><tr><td>Matched user</td><td>Uses match-related features subject to authorization.</td></tr><tr><td>Administrator</td><td>Verifies profiles and moderates reports.</td></tr></table>
+<h3>4.3 Functional requirements</h3>
+<table><tr><th>ID</th><th>Requirement</th></tr>
+<tr><td>FR-01</td><td>Authenticate users through phone number and OTP; protect restricted routes.</td></tr>
+<tr><td>FR-02</td><td>Allow users to create and update their own biodata, photos and privacy preferences.</td></tr>
+<tr><td>FR-03</td><td>Support profile browsing, filtering, detail views and pagination within access policy.</td></tr>
+<tr><td>FR-04</td><td>Support interest submission, incoming/outgoing lists, accept/reject and rate limiting.</td></tr>
+<tr><td>FR-05</td><td>Create matches through trusted server-side logic after required acceptance conditions.</td></tr>
+<tr><td>FR-06</td><td>Reveal contact information only after server-side identity, match-state and consent checks.</td></tr>
+<tr><td>FR-07</td><td>Restrict real-time conversations to authorized participants; support report/block.</td></tr>
+<tr><td>FR-08</td><td>Support CV editing, autosave where available, preview and PDF download.</td></tr>
+<tr><td>FR-09</td><td>Protect profile verification and report moderation with server-side admin authorization.</td></tr>
+<tr><td>FR-10</td><td>Provide About, FAQ, Guide, Contact, Privacy, Terms and Refund information pages.</td></tr></table>
+<h3>4.4 Non-functional requirements</h3>
+<table><tr><th>ID</th><th>Requirement</th></tr><tr><td>NFR-01 Performance</td><td>Optimize images, pagination, query indexes and client-side JavaScript.</td></tr><tr><td>NFR-02 Security</td><td>Use server-side authorization, Firestore Rules, secret management and validated input.</td></tr><tr><td>NFR-03 Privacy</td><td>Keep contact and restricted personal data out of public responses.</td></tr><tr><td>NFR-04 Usability</td><td>Bengali-first interface, clear forms, loading states and responsive navigation.</td></tr><tr><td>NFR-05 Reliability</td><td>Handle failures gracefully and preserve consistency for critical operations.</td></tr><tr><td>NFR-06 Maintainability</td><td>Use strict TypeScript, modular services, clear boundaries and maintained documentation.</td></tr><tr><td>NFR-07 Compatibility</td><td>Support modern Chrome, Edge, Firefox and Safari.</td></tr><tr><td>NFR-08 Accessibility</td><td>Provide labels, keyboard access, readable contrast and responsive content.</td></tr></table>
+<h3>4.5 External interfaces</h3><table><tr><th>Interface</th><th>Purpose</th></tr><tr><td>Firebase Authentication</td><td>Phone OTP and identity.</td></tr><tr><td>Cloud Firestore</td><td>Application data.</td></tr><tr><td>Next.js API routes / Functions</td><td>Trusted operations and server-side validation.</td></tr><tr><td>Cloudinary</td><td>Image upload and delivery.</td></tr></table>
+<h3>4.6 Constraints and assumptions</h3><ul><li>A configured Firebase project is required.</li><li>Phone Authentication and authorized domains must be configured.</li><li>Cloudinary credentials are required for signed uploads.</li><li>Production database, billing and deployment require owner approval.</li><li>Third-party service availability can affect application functionality.</li></ul>
+<h3>4.7 Acceptance criteria</h3><ol><li>Authentication works in the target environment.</li><li>Users can manage their own biodata.</li><li>Public responses exclude private fields.</li><li>Search, interests and matching use real data and enforce authorization.</li><li>Contact reveal and messaging are access-controlled.</li><li>Admin operations are protected.</li><li>Automated tests, responsive checks and performance checks are completed.</li><li>Known limitations are documented before release.</li></ol>
+</section>
+<section class="section" id="architecture"><h2>05. System Architecture</h2><p>The application uses a layered architecture. The presentation layer communicates with application services. Sensitive business operations run in trusted server-side code. Firebase provides identity and database services; Cloudinary handles media.</p>
+<div class="diagram"><div class="diagram-head">High-level system architecture</div><pre class="mermaid">
+flowchart TB
+    U[End Users]
+    A[Administrators]
+    subgraph CLIENT["Presentation Layer"]
+        UI[Next.js App Router]
+        COMP[Reusable UI Components]
+        FORM[Forms and Validation]
+    end
+    subgraph APP["Application Layer"]
+        AUTH[Authentication Services]
+        PROFILE[Profile Services]
+        SEARCH[Search Services]
+        MATCH[Interest and Match Services]
+        CHAT[Messaging Services]
+        CV[CV Services]
+        ADMIN[Administration Services]
+    end
+    subgraph SERVER["Trusted Server Layer"]
+        API[Next.js API Routes]
+        CF[Firebase Cloud Functions]
+        PROJ[Public Profile Projection]
+        ACCESS[Authorization and Validation]
+    end
+    subgraph SERVICES["External Services"]
+        FB_AUTH[Firebase Authentication]
+        FIRESTORE[(Cloud Firestore)]
+        CLOUD[Cloudinary]
+    end
+    U --> UI
+    A --> UI
+    UI --> COMP
+    UI --> FORM
+    COMP --> APP
+    FORM --> APP
+    APP --> API
+    APP --> FB_AUTH
+    API --> ACCESS
+    API --> PROJ
+    API --> CF
+    API --> FIRESTORE
+    CF --> FIRESTORE
+    PROFILE --> CLOUD
+</pre></div>
+<h3>Architectural principles</h3><ul><li>Separation of concerns.</li><li>Reusable UI components.</li><li>Server-side authorization for sensitive operations.</li><li>Explicit public data projection.</li><li>Least-privilege access.</li><li>Consistent validation and responsive-first design.</li></ul></section>
+<section class="section" id="diagrams"><h2>06. System Diagrams</h2>
+<div class="diagram"><div class="diagram-head">6.1 Use case overview</div><pre class="mermaid">
+flowchart LR
+    G[Guest]
+    U[Registered User]
+    M[Matched User]
+    AD[Administrator]
+    subgraph SYSTEM["Shuvo Milon"]
+        UC1((Browse Public Pages))
+        UC2((Register / Login))
+        UC3((Create Biodata))
+        UC4((Search Profiles))
+        UC5((Shortlist Profiles))
+        UC6((Send Interest))
+        UC7((Accept / Reject Interest))
+        UC8((Create Match))
+        UC9((Access Contact Details))
+        UC10((Send Messages))
+        UC11((Generate Matrimonial CV))
+        UC12((Report / Block User))
+        UC13((Verify Profiles))
+        UC14((Manage Reports))
+    end
+    G --> UC1
+    G --> UC2
+    U --> UC3
+    U --> UC4
+    U --> UC5
+    U --> UC6
+    U --> UC7
+    U --> UC11
+    U --> UC12
+    M --> UC9
+    M --> UC10
+    AD --> UC13
+    AD --> UC14
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.2 User registration flow</div><pre class="mermaid">
+flowchart TD
+    A([Start]) --> B[Enter Phone Number] --> C[Request OTP] --> D[Receive OTP] --> E[Enter OTP] --> F{OTP Valid?}
+    F -- No --> X[Show Error] --> E
+    F -- Yes --> G[Authenticate User] --> H{User Profile Exists?}
+    H -- No --> I[Create User Document] --> J[Complete Biodata] --> K[Open Dashboard]
+    H -- Yes --> K
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.3 Interest and match sequence</div><pre class="mermaid">
+sequenceDiagram
+    actor A as User A
+    participant App as Next.js Application
+    participant API as Trusted Server
+    participant DB as Firestore
+    actor B as User B
+    A->>App: Send interest
+    App->>API: Submit interest
+    API->>API: Authenticate and validate
+    API->>DB: Store interest
+    DB-->>API: Success
+    API-->>App: Confirmation
+    B->>App: View incoming interest
+    B->>API: Accept interest
+    API->>API: Validate authorization
+    API->>DB: Update interest and create match
+    DB-->>API: Match created
+    API-->>App: Match confirmation
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.4 Contact reveal authorization</div><pre class="mermaid">
+sequenceDiagram
+    actor U as Matched User
+    participant App as Next.js
+    participant API as Trusted API
+    participant DB as Firestore
+    U->>App: Request contact details
+    App->>API: Authenticated request
+    API->>API: Verify identity
+    API->>DB: Check match record
+    DB-->>API: Match data
+    API->>API: Verify active status and consent
+    alt Authorized
+        API->>DB: Retrieve private contact data
+        DB-->>API: Private data
+        API-->>App: Return allowed fields
+        App-->>U: Display contact details
+    else Unauthorized
+        API-->>App: Access denied
+    end
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.5 Conceptual entity relationship diagram</div><pre class="mermaid">
+erDiagram
+    USERS ||--o| PROFILES : owns
+    USERS ||--o{ INTERESTS : sends
+    USERS ||--o{ INTERESTS : receives
+    USERS ||--o{ SHORTLISTS : maintains
+    USERS ||--o{ CVS : creates
+    USERS ||--o{ REPORTS : submits
+    USERS ||--o{ BLOCKS : creates
+    PROFILES ||--o{ PHOTOS : contains
+    INTERESTS }o--o| MATCHES : contributes_to
+    MATCHES ||--o| CHATS : enables
+    CHATS ||--o{ MESSAGES : contains
+    USERS ||--o{ MESSAGES : sends
+    USERS { string uid PK; string phone; string role; timestamp createdAt }
+    PROFILES { string uid PK; string displayName; string gender; string education; string occupation; boolean verified }
+    INTERESTS { string interestId PK; string senderId FK; string receiverId FK; string status }
+    MATCHES { string matchId PK; string userA FK; string userB FK; string status }
+    CHATS { string chatId PK; string matchId FK; timestamp createdAt }
+    MESSAGES { string messageId PK; string chatId FK; string senderId FK; string content }
+    CVS { string cvId PK; string uid FK; string data }
+    REPORTS { string reportId PK; string reporterId FK; string targetId; string status }
+    BLOCKS { string blockId PK; string ownerId FK; string targetId }
+    SHORTLISTS { string shortlistId PK; string ownerId FK; string targetId }
+    PHOTOS { string photoId PK; string uid FK; string imageUrl }
+</pre></div>
+<div class="callout"><b>ERD note:</b> This is a conceptual relational view of Firestore entities, not a claim that Firestore uses relational foreign keys. Confirm actual collection paths and fields against <code>docs/DATA_MODEL.md</code>.</div>
+<div class="diagram"><div class="diagram-head">6.6 Data flow — context level</div><pre class="mermaid">
+flowchart LR
+    U[User]
+    AD[Administrator]
+    S((Shuvo Milon Platform))
+    DB[(Firestore)]
+    AUTH[Firebase Authentication]
+    MEDIA[Cloudinary]
+    U -->|Registration, biodata, search, interest| S
+    S -->|Profiles, matches, messages, CV| U
+    AD -->|Verification and moderation| S
+    S -->|Administrative results| AD
+    S <-->|Application data| DB
+    S <-->|Identity verification| AUTH
+    S <-->|Image upload and delivery| MEDIA
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.7 Data flow — application level</div><pre class="mermaid">
+flowchart TB
+    U[User]
+    P1((Authentication))
+    P2((Profile Management))
+    P3((Profile Search))
+    P4((Interest Management))
+    P5((Match Management))
+    P6((Messaging))
+    P7((CV Generation))
+    D1[(Users)]
+    D2[(Profiles)]
+    D3[(Interests)]
+    D4[(Matches)]
+    D5[(Chats and Messages)]
+    D6[(CV Records)]
+    U --> P1
+    P1 <--> D1
+    U --> P2
+    P2 <--> D2
+    U --> P3
+    P3 --> D2
+    U --> P4
+    P4 <--> D3
+    P4 --> P5
+    P5 <--> D4
+    U --> P6
+    P6 <--> D5
+    U --> P7
+    P7 <--> D6
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.8 Public profile projection flow</div><pre class="mermaid">
+flowchart TD
+    A[Client requests public profile] --> B[Authenticate if required]
+    B --> C[Validate access policy]
+    C -->|Invalid| X[Reject request]
+    C -->|Valid| D[Read profile data]
+    D --> E[Apply explicit field allowlist]
+    E --> F[Exclude private and restricted data]
+    F --> G[Return public DTO]
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.9 Deployment diagram</div><pre class="mermaid">
+flowchart TB
+    B[User Browser]
+    subgraph HOST["Application Hosting"]
+        NEXT[Next.js Application]
+        API[Server API Routes]
+    end
+    subgraph FIREBASE["Firebase Infrastructure"]
+        AUTH[Firebase Authentication]
+        FS[(Production Firestore)]
+        FUNC[Firebase Functions]
+    end
+    subgraph MEDIA["Media Infrastructure"]
+        CLOUD[Cloudinary]
+    end
+    B -->|HTTPS| NEXT
+    NEXT --> API
+    B -->|Authentication| AUTH
+    API --> AUTH
+    API --> FS
+    API --> FUNC
+    FUNC --> FS
+    API --> CLOUD
+</pre></div>
+<div class="diagram"><div class="diagram-head">6.10 Development lifecycle</div><pre class="mermaid">
+flowchart TD
+    A[Requirements Analysis] --> B[System Design] --> C[Implementation] --> D[Unit Testing] --> E[Integration Testing] --> F[Security Testing] --> G[Responsive and Performance Testing] --> H{Acceptance criteria met?}
+    H -->|Yes| I[Release Candidate]
+    H -->|No| J[Fix and Improve] --> C
+</pre></div>
+</section>
+<section class="section" id="stack"><h2>07. Technology Stack</h2><table><tr><th>Category</th><th>Technology</th><th>Purpose</th></tr><tr><td>Frontend</td><td>Next.js 16</td><td>Application framework and routing</td></tr><tr><td>Language</td><td>TypeScript</td><td>Type safety</td></tr><tr><td>Styling</td><td>Tailwind CSS v4</td><td>UI styling</td></tr><tr><td>Authentication</td><td>Firebase Auth</td><td>Phone OTP</td></tr><tr><td>Database</td><td>Cloud Firestore</td><td>Application data</td></tr><tr><td>Backend</td><td>Next.js API Routes / Firebase Functions</td><td>Trusted operations</td></tr><tr><td>Media</td><td>Cloudinary</td><td>Image upload and delivery</td></tr><tr><td>Testing</td><td>Vitest</td><td>Unit and integration tests</td></tr><tr><td>Security tests</td><td>Firebase Emulator</td><td>Firestore Rules verification</td></tr></table></section>
+<section class="section" id="database"><h2>08. Database Design</h2><p>Cloud Firestore is the primary database. The conceptual domain includes users, profiles, interests, matches, chats, messages, shortlists, CVs, reports and blocks.</p>
+<pre>Firestore
+├── users/{uid}
+├── profiles/{uid}
+│   └── private/contact
+├── interests/{interestId}
+├── matches/{matchId}
+├── chats/{chatId}/messages/{messageId}
+├── shortlists/{shortlistId}
+├── cvs/{cvId}
+├── reports/{reportId}
+└── blocks/{blockId}</pre>
+<div class="callout">This is an illustrative collection map only. The actual paths, IDs, indexes and fields must match <code>docs/DATA_MODEL.md</code>. Do not migrate or rename collections based on this diagram alone.</div>
+<h3>Data management principles</h3><ul><li>Use authenticated user IDs for ownership references.</li><li>Validate user-generated data.</li><li>Separate public and private profile information.</li><li>Apply Firestore Security Rules.</li><li>Use transactions for operations that require atomicity.</li><li>Create appropriate indexes for search queries.</li></ul></section>
+<section class="section" id="security"><h2>09. Security and Privacy</h2>
+<h3>Authentication and authorization</h3><ul><li>Use Firebase Phone Authentication and OTP verification.</li><li>Verify identity on the server for privileged operations.</li><li>Allow users to manage only their own records.</li><li>Protect admin actions with trusted role checks.</li><li>Restrict chat reads and writes to authorized participants.</li></ul>
+<h3>Public/private profile separation</h3><p>Public responses must contain only explicitly approved fields. Private information can include phone numbers, addresses, guardian contact details, restricted family information and private documents.</p>
+<div class="callout"><b>Critical technical note:</b> Firestore Security Rules cannot redact selected fields from a document returned by a read. Use separate public/private documents or a trusted server-side API/Cloud Function that constructs an explicit public DTO. More restrictive rules alone do not implement field-level projection.</div>
+<h3>Contact reveal policy</h3><ol><li>Confirm the requester is authenticated.</li><li>Confirm the requester is a participant in the relevant match.</li><li>Verify the match is in an authorized active state.</li><li>Verify any required consent and privacy conditions.</li><li>Return only the fields the requester is permitted to see.</li></ol>
+<h3>Secure development practices</h3><ul><li>Never expose Firebase Admin credentials to the client.</li><li>Never commit <code>.env.local</code> or service-account files.</li><li>Never trust client-side role information.</li><li>Validate request payloads on the server.</li><li>Apply rate limits to sensitive operations.</li><li>Keep dependencies and security documentation updated.</li></ul></section>
+<section class="section" id="roles"><h2>10. User Roles and Permissions</h2><table><tr><th>Capability</th><th>Guest</th><th>User</th><th>Matched user</th><th>Admin</th></tr><tr><td>Browse public pages</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Create / edit own biodata</td><td>No</td><td>Yes</td><td>Yes</td><td>Policy-based</td></tr><tr><td>Search profiles</td><td>Limited</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Send / respond to interest</td><td>No</td><td>Yes</td><td>Yes</td><td>No</td></tr><tr><td>Access match features</td><td>No</td><td>No</td><td>Conditional</td><td>Policy-based</td></tr><tr><td>Access private contact</td><td>No</td><td>No</td><td>Conditional</td><td>Authorized only</td></tr><tr><td>Messaging</td><td>No</td><td>No</td><td>Authorized</td><td>Policy-based</td></tr><tr><td>Verify profiles / manage reports</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr></table><p>All permissions must be enforced by backend and database rules, not only by UI visibility.</p></section>
+<section class="section" id="setup"><h2>11. Installation and Setup</h2>
+<h3>Prerequisites</h3><ul><li>Node.js version compatible with the project's Next.js requirements.</li><li>npm and Git.</li><li>Firebase CLI.</li><li>Java 21 for the configured Firebase Emulator workflow, if required.</li></ul>
+<h3>Clone and install</h3><pre>git clone &lt;YOUR_REPOSITORY_URL&gt;
+cd shuvo-milon-matromonial-site
+npm install</pre>
+<h3>Configure local environment</h3><pre># macOS / Linux
+cp .env.example .env.local
+
+# Windows PowerShell
+Copy-Item .env.example .env.local</pre>
+<p>Populate the local file using the exact variable names in <code>.env.example</code> and <code>docs/SETUP.md</code>.</p>
+<h3>Run development server</h3><pre>npm run dev</pre><p>Open <code>http://localhost:3000</code>.</p>
+<h3>Run quality checks</h3><pre>npm run lint
+npx vitest run
+npm run build</pre>
+<h3>Run Firestore rules tests</h3><pre>firebase emulators:exec --only firestore "npx vitest run --config vitest.rules.config.mjs tests/rules --reporter=verbose"</pre>
+<p>Do not report emulator tests as passed unless the command actually executes and produces passing output.</p></section>
+<section class="section" id="environment"><h2>12. Environment Configuration</h2><p>Use <code>.env.example</code> as the authoritative list of environment variable names. Configuration categories include Firebase client settings, trusted server-side Firebase Admin settings, Cloudinary signed-upload settings, application environment and development-only mock flags.</p><div class="callout">Never place real credentials in README or commit local secrets. Restrict API keys, separate development and production configuration, and keep server-only secrets out of browser bundles.</div></section>
+<section class="section" id="structure"><h2>13. Project Structure</h2><p>Illustrative structure only; the repository's actual paths and naming conventions take precedence.</p>
+<pre>shuvo-milon-matromonial-site/
+├── public/
+│   ├── images/
+│   └── fonts/
+├── src/
+│   ├── app/
+│   │   ├── (auth)/
+│   │   ├── (main)/
+│   │   ├── admin/
+│   │   └── api/
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── layout/
+│   │   ├── profile/
+│   │   └── forms/
+│   ├── lib/
+│   │   ├── firebase/
+│   │   ├── auth/
+│   │   └── validation/
+│   ├── services/
+│   ├── hooks/
+│   ├── types/
+│   └── strings/bn.json
+├── functions/
+├── tests/
+│   ├── unit/
+│   └── rules/
+├── docs/
+├── .env.example
+├── firebase.json
+├── firestore.rules
+├── package.json
+└── README.md</pre></section>
+<section class="section" id="testing"><h2>14. Testing and Quality Assurance</h2><table><tr><th>Test type</th><th>Purpose</th></tr><tr><td>Unit</td><td>Validate individual functions.</td></tr><tr><td>Component</td><td>Validate UI behavior.</td></tr><tr><td>Integration</td><td>Validate service interactions.</td></tr><tr><td>Security Rules</td><td>Verify database authorization.</td></tr><tr><td>Authentication</td><td>Validate login and session behavior.</td></tr><tr><td>Responsive</td><td>Verify device layouts.</td></tr><tr><td>Performance</td><td>Evaluate loading and responsiveness.</td></tr><tr><td>Manual acceptance</td><td>Verify real user workflows.</td></tr></table>
+<h3>Responsive targets</h3><table><tr><th>Device</th><th>Viewport width</th></tr><tr><td>Mobile</td><td>360px</td></tr><tr><td>Tablet</td><td>768px</td></tr><tr><td>Desktop</td><td>1440px</td></tr></table>
+<h3>Lighthouse targets (not verified scores)</h3><table><tr><th>Category</th><th>Target</th></tr><tr><td>Performance</td><td>80+</td></tr><tr><td>Accessibility</td><td>90+</td></tr><tr><td>Best Practices</td><td>90+</td></tr><tr><td>SEO</td><td>90+</td></tr></table></section>
+<section class="section" id="roadmap"><h2>15. Development Roadmap</h2><p>Statuses below reflect the task list supplied for this documentation draft, not an independent repository audit.</p>
+<h3>Sprint 1 — Foundation</h3><p>✓ Project setup · Design tokens · Bengali fonts and layout · Base strings · Desktop/mobile navigation · Footer</p>
+<h3>Sprint 2 — Authentication and profiles</h3><p>✓ Phone login · OTP · Auth context · User document · Multi-step profile setup · Signed image uploads · Privacy settings · Firestore rules</p><p><span class="status">PENDING</span> T2.9 — Field-level projection on public profile reads (trusted API or Cloud Function).</p>
+<h3>Sprint 3 — Profile discovery</h3><p>✓ Homepage and search · Filters · Firestore query · Profile cards · Pagination · Detail page · Shortlist</p>
+<h3>Sprint 4 — Interest and matchmaking</h3><p>✓ Interest submission and rate limiting · Interest lists · Accept/reject · Match creation · Contact reveal</p>
+<h3>Sprint 5 — Chat and reports</h3><p>✓ Chat list · Real-time messaging · Report and block</p>
+<h3>Sprint 6 — Matrimonial CV</h3><p>✓ CV model and rules · Multi-step forms · Autosave · Profile CV tab · Preview/templates · Bengali PDF</p>
+<h3>Sprint 7 — Admin and static pages</h3><p>✓ Admin role · Profile verification · Report management · Information and policy pages</p>
+<h3>Sprint 8 — Launch readiness</h3><ul><li><span class="status">NOT VERIFIED</span> Responsive testing at 360, 768 and 1440px.</li><li><span class="status">RECHECK</span> Firebase Emulator rules test results.</li><li><span class="status">NOT VERIFIED</span> Lighthouse performance testing.</li><li><span class="status">OWNER ACTION</span> Firebase budget alerts.</li><li><span class="status">OWNER ACTION</span> Production deployment.</li><li><span class="status">OWNER ACTION</span> Beta user testing.</li></ul>
+<h3>Future phase</h3><p>Payment integration (bKash, Nagad, SSLCommerz), premium subscriptions, additional community features and Android application.</p></section>
+<section class="section" id="deployment"><h2>16. Deployment</h2><div class="diagram"><div class="diagram-head">Production deployment topology</div><pre class="mermaid">
+flowchart TB
+    USER[End User] --> DNS[Domain and DNS] --> HOST[Production Hosting] --> APP[Next.js Application]
+    APP --> AUTH[Firebase Authentication]
+    APP --> DB[(Production Firestore)]
+    APP --> FUNC[Firebase Functions]
+    FUNC --> DB
+    APP --> MEDIA[Cloudinary]
+</pre></div>
+<h3>Pre-deployment checklist</h3><ol><li>Complete security review.</li><li>Verify Firebase Authentication configuration.</li><li>Configure production Firestore and rules.</li><li>Configure Cloudinary production credentials.</li><li>Verify API key restrictions.</li><li>Run lint, tests and production build.</li><li>Complete responsive and performance checks.</li><li>Review logging and error handling.</li><li>Configure budget alerts.</li><li>Obtain explicit owner approval.</li></ol>
+<div class="callout">Production deployment, billing changes and infrastructure mutations require explicit project-owner authorization. Do not deploy automatically during ordinary development.</div></section>
+<section class="section" id="contribution"><h2>17. Contribution Guidelines</h2><ul><li>Read relevant documentation before changing code.</li><li>Audit existing implementation before adding features.</li><li>Preserve existing functionality and user changes.</li><li>Follow TypeScript strict mode.</li><li>Add tests for new business logic.</li><li>Update documentation when behavior changes.</li><li>Never commit secrets or generated artifacts.</li><li>Never claim unverified work as complete.</li></ul>
+<h3>Commit message format</h3><pre>type(scope): concise imperative summary
+
+feat(profile): add public profile projection
+fix(auth): validate authenticated user access
+test(rules): cover inactive match access
+docs(readme): improve project documentation</pre></section>
+<section class="section" id="license"><h2>18. License and Project Status</h2><p>The project license must be specified by the repository owner. Until an explicit license is added, do not assume the project is open source.</p><p>Shuvo Milon is under active development. This documentation describes intended requirements, architecture and workflows; it does not independently certify every feature, integration, security control or deployment task.</p>
+<h3>Authoritative project documents</h3><ul><li><code>docs/PRD.md</code></li><li><code>docs/FEATURES.md</code></li><li><code>docs/ARCHITECTURE.md</code></li><li><code>docs/DATA_MODEL.md</code></li><li><code>docs/SECURITY.md</code></li><li><code>docs/SETUP.md</code></li><li><code>docs/TASKS.md</code></li></ul></section>
+<footer>শুভ মিলন — A secure, respectful and values-based matrimonial discovery platform.<br>Documentation preview · Mermaid diagrams render in a browser with internet access.</footer>
+</main>
+</div>
+</body>
+</html>
