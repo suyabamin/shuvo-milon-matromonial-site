@@ -32,6 +32,10 @@ export async function searchProfiles(
   filters: SearchFilters,
   maxResults: number = 20
 ): Promise<ProfileCardData[]> {
+  if (process.env.NEXT_PUBLIC_USE_MOCK === "true") {
+    return getMockProfiles(filters);
+  }
+
   try {
     const constraints: QueryConstraint[] = [
       where("status", "==", "published"),
@@ -52,17 +56,16 @@ export async function searchProfiles(
     const q = query(collection(db, "profiles"), ...constraints);
     const snapshot = await getDocs(q);
 
-    if (!snapshot.empty) {
-      return snapshot.docs.map((docSnap) => ({
-        uid: docSnap.id,
-        ...(docSnap.data() as Omit<ProfileCardData, "uid">),
-      }));
+    return snapshot.docs.map((docSnap) => ({
+      uid: docSnap.id,
+      ...(docSnap.data() as Omit<ProfileCardData, "uid">),
+    }));
+  } catch (error) {
+    if (process.env.NEXT_PUBLIC_USE_MOCK === "true") {
+      return getMockProfiles(filters);
     }
-  } catch {
-    // Fall back to structured dummy sample data for preview and test verification
+    throw error;
   }
-
-  return getMockProfiles(filters);
 }
 
 export function getMockProfiles(filters: SearchFilters): ProfileCardData[] {

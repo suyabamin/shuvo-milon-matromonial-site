@@ -12,7 +12,10 @@ export default function ShortlistPage() {
 
   // Initial shortlist selection
   const [shortlist, setShortlist] = useState<ProfileCardData[]>(() => {
-    return getMockProfiles({}).slice(0, 3);
+    if (process.env.NEXT_PUBLIC_USE_MOCK === "true") {
+      return getMockProfiles({}).slice(0, 3);
+    }
+    return [];
   });
 
   const handleToggleShortlist = (uid: string) => {

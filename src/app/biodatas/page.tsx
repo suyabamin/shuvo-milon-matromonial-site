@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { FilterPanel } from "@/features/search/FilterPanel";
 import { SearchFilters } from "@/features/search/filterBuilder";
 import { ProfileCard } from "@/components/ProfileCard";
-import { getMockProfiles } from "@/features/search/searchApi";
+import { ProfileCardData, getMockProfiles, searchProfiles } from "@/features/search/searchApi";
 import { t } from "@/lib/strings";
 
 function BiodatasContent() {
@@ -22,18 +22,49 @@ function BiodatasContent() {
     maxAge: 50,
   }));
 
+  const [profiles, setProfiles] = useState<ProfileCardData[]>(() => {
+    if (process.env.NEXT_PUBLIC_USE_MOCK === "true") {
+      return getMockProfiles({
+        gender: (searchParams.get("gender") as SearchFilters["gender"]) || undefined,
+        maritalStatus: (searchParams.get("maritalStatus") as SearchFilters["maritalStatus"]) || "all",
+        district: searchParams.get("district") || undefined,
+        minAge: 18,
+        maxAge: 50,
+      });
+    }
+    return [];
+  });
   const [shortlistedUids, setShortlistedUids] = useState<string[]>([]);
   const [interestSentUids, setInterestSentUids] = useState<string[]>([]);
   const [page, setPage] = useState(1);
   const pageSize = 6;
 
-  // Filter profiles reactively
-  const filteredProfiles = useMemo(() => {
-    return getMockProfiles(filters);
+  React.useEffect(() => {
+    let active = true;
+    if (process.env.NEXT_PUBLIC_USE_MOCK === "true") {
+      return;
+    }
+
+    searchProfiles(filters)
+      .then((res) => {
+        if (!active) return;
+        setProfiles(res);
+      })
+      .catch(() => {
+        if (!active) return;
+        setProfiles([]);
+      });
+
+    return () => {
+      active = false;
+    };
   }, [filters]);
 
-  const totalPages = Math.ceil(filteredProfiles.length / pageSize) || 1;
-  const pagedProfiles = filteredProfiles.slice((page - 1) * pageSize, page * pageSize);
+  const totalPages = Math.ceil(profiles.length / pageSize) || 1;
+  const pagedProfiles = useMemo(
+    () => profiles.slice((page - 1) * pageSize, page * pageSize),
+    [profiles, page, pageSize]
+  );
 
   const handleFilterChange = (newFilters: SearchFilters) => {
     setFilters(newFilters);
@@ -67,7 +98,7 @@ function BiodatasContent() {
             সকল বায়োডাটা
           </h1>
           <p className="text-sm text-text-muted mt-1">
-            মোট <span className="font-semibold text-primary">{filteredProfiles.length}</span> টি বায়োডাটা পাওয়া গেছে
+            মোট <span className="font-semibold text-primary">{profiles.length}</span> টি বায়োডাটা পাওয়া গেছে
           </p>
         </div>
 
