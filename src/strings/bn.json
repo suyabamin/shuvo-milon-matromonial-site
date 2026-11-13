@@ -124,5 +124,52 @@
     "download": "PDF ডাউনলোড",
     "autoSaved": "সেভ হয়েছে (অটো)",
     "template": "টেমপ্লেট নির্বাচন করুন"
+  },
+  "interest": {
+    "pageTitle": "ইন্টারেস্ট",
+    "sent": "পাঠানো",
+    "received": "পাওয়া",
+    "sendInterest": "ইন্টারেস্ট পাঠান",
+    "accept": "গ্রহণ করুন",
+    "reject": "প্রত্যাখ্যান করুন",
+    "pending": "অপেক্ষামান",
+    "accepted": "গ্রহণ করা হয়েছে",
+    "rejected": "প্রত্যাখ্যান করা হয়েছে",
+    "sentSuccess": "ইন্টারেস্ট পাঠানো হয়েছে",
+    "alreadySent": "আপনি ইতোমধ্যে ইন্টারেস্ট পাঠিয়েছেন",
+    "rateLimitExceeded": "আজকের জন্য সর্বোচ্চ ২০টি ইন্টারেস্ট পাঠানো হয়ে গেছে",
+    "sendError": "ইন্টারেস্ট পাঠাতে সমস্যা হয়েছে",
+    "acceptError": "গ্রহণ করতে সমস্যা হয়েছে",
+    "rejectError": "প্রত্যাখ্যান করতে সমস্যা হয়েছে",
+    "emptySent": "আপনি এখনো কাউকে ইন্টারেস্ট পাঠাননি।",
+    "emptyReceived": "এখনো কোনো ইন্টারেস্ট পাওয়া যায়নি।"
+  },
+  "chat": {
+    "pageTitle": "চ্যাট",
+    "messagePlaceholder": "বার্তা লিখুন...",
+    "send": "পাঠান",
+    "report": "রিপোর্ট করুন",
+    "block": "ব্লক করুন",
+    "reportTitle": "এই ব্যক্তিকে রিপোর্ট করুন",
+    "reportReason": "কারণ নির্বাচন করুন",
+    "reportReasonSpam": "স্প্যাম",
+    "reportReasonFake": "ভুয়া প্রোফাইল",
+    "reportReasonAbuse": "অপব্যবহার",
+    "reportReasonOther": "অন্যান্য",
+    "reportSubmit": "রিপোর্ট জমা দিন",
+    "reportSuccess": "রিপোর্ট জমা দেওয়া হয়েছে",
+    "emptyChat": "এখনো কোনো বার্তা নেই।"
+  },
+  "admin": {
+    "pageTitle": "অ্যাডমিন প্যানেল",
+    "pendingVerification": "যাচাইয়ের অপেক্ষায়",
+    "reports": "রিপোর্টসমূহ",
+    "verify": "যাচাই করুন",
+    "unverify": "যাচাই বাতিল",
+    "blockUser": "ব্লক করুন",
+    "unblockUser": "আনব্লক করুন",
+    "resolveReport": "সমাধান হয়েছে",
+    "noReports": "কোনো রিপোর্ট নেই।",
+    "noPending": "কোনো যাচাই বাকি নেই।"
   }
 }
