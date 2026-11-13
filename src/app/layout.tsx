@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Hind_Siliguri, Noto_Sans_Bengali, Poppins } from "next/font/google";
+import { Header } from "@/components/Header";
+import { BottomNav } from "@/components/BottomNav";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({
@@ -39,7 +42,10 @@ export default function RootLayout({
       className={`${hindSiliguri.variable} ${notoSansBengali.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-body bg-surface text-text">
-        {children}
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <BottomNav />
       </body>
     </html>
   );
