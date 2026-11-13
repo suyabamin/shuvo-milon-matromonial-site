@@ -211,6 +211,26 @@ export default async function BiodataDetailPage({ params }: ProfileDetailParams)
               </div>
             </div>
           </div>
+
+          {/* Section 5: CV Information */}
+          <div className="pt-4 border-t border-input-border">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="font-heading font-bold text-lg text-text">
+                  সম্পূর্ণ কারিকুলাম ভিটা (সিভি)
+                </h2>
+                <p className="text-xs text-text-muted mt-0.5">
+                  এই প্রার্থীর বিস্তারিত শিক্ষা, ক্যারিয়ার ও পারিবারিক বৃত্তান্ত
+                </p>
+              </div>
+              <Link
+                href={`/me/cv/preview?uid=${profile.uid}`}
+                className="px-4 py-2 bg-primary/10 text-primary border border-primary/20 rounded-md text-sm font-medium hover:bg-primary hover:text-white transition-colors"
+              >
+                সিভি দেখুন
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Back Link */}
