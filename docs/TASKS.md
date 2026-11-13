@@ -18,6 +18,7 @@
 - [x] T2.6 ছবি আপলোড (Cloudinary signed)
 - [x] T2.7 প্রাইভেসি সেটিংস
 - [x] T2.8 Firestore Rules (profiles, users)
+- [ ] T2.9 TODO: Field-level projection on public profile read (Cloud Function or API route)
 
 ## Sprint 3: খোঁজা
 - [x] T3.1 হোমপেজ হিরো ও সার্চ কার্ড

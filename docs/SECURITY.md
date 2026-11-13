@@ -16,8 +16,10 @@
 - Admin: Custom claim `admin: true` (শুধু Function দিয়ে সেট)।
 
 ## ইমেইল/ফোন গোপনীয়তা
-- ফোন নম্বর কখনো পাবলিক প্রোফাইলে না।
-- ম্যাচ হওয়ার পর `revealContactOnMatch` Function দিয়ে শেয়ার।
+- ফোন নম্বর ও অভিভাবকের ব্যক্তিগত ঠিকানা কখনোই `profiles/{uid}` মূল ডকুমেন্টে রাখা যাবে না। এগুলো সংরক্ষিত থাকবে `profiles/{uid}/private/contact` সাব-কালেকশনে।
+- `profiles/{uid}` ডকুমেন্টের পুরোটা পড়া গেলেও স্পর্শকাতর যোগাযোগ তথ্য উন্মুক্ত হয় না কারণ তা পৃথক সাব-কালেকশনে অবস্থিত।
+- ভবিষ্যতে প্রয়োজনে Cloud Function বা backend endpoint দিয়ে field-level projection নিশ্চিত করা যেতে পারে।
+- ম্যাচ হওয়ার পর `isMatchedWith` রুল অথবা `revealContactOnMatch` Function দিয়ে যোগাযোগের তথ্য দেখা যাবে।
 - ডাউনলোড করা CV-তে ফোন দেখানো ইউজারের নিজের পছন্দ।
 
 ## ছবি
