@@ -38,7 +38,6 @@ beforeEach(async () => {
 
 describe("Firestore Security Rules", () => {
   it("denies unauthenticated read of a private profile / draft profile", async () => {
-    // Setup a draft profile using admin context
     await testEnv.withSecurityRulesDisabled(async (context) => {
       await context.firestore().collection("profiles").doc("user1").set({
         name: "Test User",
@@ -73,7 +72,7 @@ describe("Firestore Security Rules", () => {
     await assertSucceeds(contactRef.get());
   });
 
-  it("denies non-owner from reading another user's private contact", async () => {
+  it("denies non-owner from reading another user's private contact when unmatched", async () => {
     await testEnv.withSecurityRulesDisabled(async (context) => {
       await context
         .firestore()
@@ -95,6 +94,88 @@ describe("Firestore Security Rules", () => {
     await assertFails(contactRef.get());
   });
 
+  it("allows matched user to read private contact info", async () => {
+    await testEnv.withSecurityRulesDisabled(async (context) => {
+      await context
+        .firestore()
+        .collection("profiles")
+        .doc("user1")
+        .collection("private")
+        .doc("contact")
+        .set({
+          guardianPhone: "+8801700000000",
+        });
+      // Active match between user1 and user2
+      await context.firestore().collection("matches").doc("user1_user2").set({
+        users: ["user1", "user2"],
+      });
+    });
+
+    const matchedUserDb = testEnv.authenticatedContext("user2").firestore();
+    const contactRef = matchedUserDb
+      .collection("profiles")
+      .doc("user1")
+      .collection("private")
+      .doc("contact");
+    await assertSucceeds(contactRef.get());
+  });
+
+  it("denies unauthenticated read of private contact info", async () => {
+    await testEnv.withSecurityRulesDisabled(async (context) => {
+      await context
+        .firestore()
+        .collection("profiles")
+        .doc("user1")
+        .collection("private")
+        .doc("contact")
+        .set({
+          guardianPhone: "+8801700000000",
+        });
+    });
+
+    const unauthDb = testEnv.unauthenticatedContext().firestore();
+    const contactRef = unauthDb
+      .collection("profiles")
+      .doc("user1")
+      .collection("private")
+      .doc("contact");
+    await assertFails(contactRef.get());
+  });
+
+  it("denies non-owner write to private contact info", async () => {
+    const hackerDb = testEnv.authenticatedContext("user2").firestore();
+    const contactRef = hackerDb
+      .collection("profiles")
+      .doc("user1")
+      .collection("private")
+      .doc("contact");
+    await assertFails(contactRef.set({ guardianPhone: "+8801999999999" }));
+  });
+
+  it("allows admin to read private contact info", async () => {
+    await testEnv.withSecurityRulesDisabled(async (context) => {
+      await context
+        .firestore()
+        .collection("profiles")
+        .doc("user1")
+        .collection("private")
+        .doc("contact")
+        .set({
+          guardianPhone: "+8801700000000",
+        });
+    });
+
+    const adminDb = testEnv
+      .authenticatedContext("adminUser", { admin: true })
+      .firestore();
+    const contactRef = adminDb
+      .collection("profiles")
+      .doc("user1")
+      .collection("private")
+      .doc("contact");
+    await assertSucceeds(contactRef.get());
+  });
+
   it("denies interest accept by non-recipient", async () => {
     await testEnv.withSecurityRulesDisabled(async (context) => {
       await context.firestore().collection("interests").doc("int1").set({
@@ -104,12 +185,10 @@ describe("Firestore Security Rules", () => {
       });
     });
 
-    // user3 (neither sender nor recipient) attempts to update/accept
     const thirdPartyDb = testEnv.authenticatedContext("user3").firestore();
     const interestRef = thirdPartyDb.collection("interests").doc("int1");
     await assertFails(interestRef.update({ status: "accepted" }));
 
-    // sender (user1) also cannot accept their own sent proposal
     const senderDb = testEnv.authenticatedContext("user1").firestore();
     const senderInterestRef = senderDb.collection("interests").doc("int1");
     await assertFails(senderInterestRef.update({ status: "accepted" }));
