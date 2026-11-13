@@ -32,8 +32,8 @@
 - [x] T4.1 ইন্টারেস্ট পাঠানো (রেট লিমিট সহ)
 - [x] T4.2 ইন্টারেস্ট তালিকা
 - [x] T4.3 গ্রহণ/প্রত্যাখ্যান
-- [ ] T4.4 Function: ম্যাচ তৈরি
-- [ ] T4.5 Function: contact reveal
+- [x] T4.4 Function: ম্যাচ তৈরি
+- [x] T4.5 Function: contact reveal
 
 ## Sprint 5: চ্যাট ও রিপোর্ট
 - [ ] T5.1 চ্যাট তালিকা
