@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #4A1F6E;
+  --color-accent: #D62A7A;
+  --color-bg-soft: #FBE8F5;
+  --color-bg-soft2: #F3C6EC;
+  --color-surface: #FFFFFF;
+  --color-text: #3B2A4F;
+  --color-text-muted: #6B6478;
+  --color-border: #E9A6D0;
+  --color-input-border: #E5DCEB;
+  --color-success: #15803D;
+  --color-error: #B91C1C;
+  --color-warning: #B45309;
+
+  --font-heading: "Hind Siliguri", sans-serif;
+  --font-body: "Noto Sans Bengali", sans-serif;
+  --font-english-heading: "Poppins", sans-serif;
+
+  --radius-card: 16px;
+  --radius-button: 12px;
+  --radius-input: 12px;
+
+  --breakpoint-mobile: 640px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FFFFFF;
+  --foreground: #3B2A4F;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.7;
+  min-height: 100vh;
 }
