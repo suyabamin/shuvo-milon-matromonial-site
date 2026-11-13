@@ -42,3 +42,21 @@ Firebase Console-এ:
 
 ## ধাপ ৫: এনভায়রনমেন্ট
 `.env.local` (Git-এ যাবে না):
+
+## Manual setup (human)
+
+> These steps cannot be automated. A human must complete each one before the app can go live.
+
+- [ ] Firebase Authentication: Phone sign-in enabled in Firebase Console
+- [ ] Firebase Authentication: `localhost` (and production domain) added to Authorized Domains
+- [ ] Firestore Database created in production mode, region `asia-south1`
+- [ ] `.env.local` filled with Firebase web config (variable names are in `.env.example`)
+- [ ] Google Cloud API key restricted to HTTP referrers (`localhost:3000/*`, production domain) and only the APIs needed (Firestore, Auth)
+- [ ] Firebase Budget Alert set at 50%, 90%, and 100% of monthly budget (T8.4)
+- [ ] Cloudinary account created; `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` and `CLOUDINARY_API_SECRET` filled in `.env.local`
+- [ ] Java 21 installed (`java -version`) — required to run Firebase Emulator for rule tests (T8.2)
+- [ ] Responsive check at 360px, 768px, and 1440px in a real browser (T8.1)
+- [ ] Lighthouse audit run on production build — target score 80+ (T8.3)
+- [ ] Firebase Blaze (pay-as-you-go) plan enabled — required only for Cloud Functions deploy
+- [ ] Production deploy via `firebase deploy` after all automated checks pass (T8.5)
+- [ ] Beta users recruited and onboarded (T8.6)
