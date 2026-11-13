@@ -5,3 +5,4 @@ if (!admin.apps.length) {
 }
 
 export * from "./matches";
+export * from "./admin";
